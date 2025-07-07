@@ -1,4 +1,30 @@
 __pycache__/
 *.pyc
 *~
+# Ignore Synchronized-BatchNorm clones
+Face_Enhancement/models/networks/sync_batchnorm/
+Global/detection_models/sync_batchnorm/
 
+# Ignore Dlib's face landmarks model
+Face_Detection/shape_predictor_68_face_landmarks.dat
+Face_Detection/shape_predictor_68_face_landmarks.dat.bz2
+
+# Ignore face enhancement checkpoints
+Face_Enhancement/face_checkpoints.zip
+Face_Enhancement/checkpoints/
+Face_Enhancement/__pycache__/
+
+# Ignore global enhancement checkpoints
+Global/global_checkpoints.zip
+Global/checkpoints/
+Global/__pycache__/
+
+# General ignores
+*.zip
+*.bz2
+*.pth
+*.pt
+*.h5
+*.ckpt
+Face_Enhancement/models/networks/Synchronized-BatchNorm-PyTorch/
+Global/detection_models/Synchronized-BatchNorm-PyTorch/
