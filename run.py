@@ -3,12 +3,14 @@ import shutil
 import sys
 from subprocess import call
 
+
 def run_cmd(command):
     try:
         call(command, shell=True)
     except KeyboardInterrupt:
         print("Process interrupted")
         sys.exit(1)
+
 
 def run_pipeline(
     input_folder: str,
@@ -76,9 +78,7 @@ def run_pipeline(
     os.makedirs(stage_2_output_dir, exist_ok=True)
 
     script = "detect_all_dlib_HR.py" if hr else "detect_all_dlib.py"
-    stage_2_command = (
-        f"{python_exec} {script} --url {stage_2_input_dir} --save_url {stage_2_output_dir}"
-    )
+    stage_2_command = f"{python_exec} {script} --url {stage_2_input_dir} --save_url {stage_2_output_dir}"
     run_cmd(stage_2_command)
     print("Finish Stage 2 ...\n")
 
@@ -116,7 +116,11 @@ def run_pipeline(
     stage_4_output_dir = os.path.join(output_folder, "final_output")
     os.makedirs(stage_4_output_dir, exist_ok=True)
 
-    blend_script = "align_warp_back_multiple_dlib_HR.py" if hr else "align_warp_back_multiple_dlib.py"
+    blend_script = (
+        "align_warp_back_multiple_dlib_HR.py"
+        if hr
+        else "align_warp_back_multiple_dlib.py"
+    )
     stage_4_command = (
         f"{python_exec} {blend_script} --origin_url {stage_4_input_image_dir} "
         f"--replace_url {stage_4_input_face_dir} --save_url {stage_4_output_dir}"
